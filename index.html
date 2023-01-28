@@ -5,18 +5,56 @@
     <meta name="viewport" content="width=device-width, initial=scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AROUND US</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #map{
-            height:800px;
-            width:100%;
+            height:500px;
+            width:90%;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
         }
         h1{
             text-align: center;
+            padding: 2%;
+            background-color: white;
+        }
+
+        form{
+            padding: 1%
+        }
+        body{
+            background-color:blanchedalmond;
         }
     </style>
 </head>
-<body>
-    <h1>Around Us - An Interactive Map</h1>
+    <div class="nav_bar">
+        <nav>
+            <div class="logo">
+                <a href="#"><img src="logo.jpg"></a>
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">New Updates</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+            <button type="button">Contact</button>
+        </nav>
+    </div>
+
+    <form action="form_processor.php" method="post">
+        <label for="name">Your name:</label>
+        <input type="text" id="name" name="name" placeholder="username" required>
+        <label for="place">Place to add:</label>
+        <input type="text" id="place" name="place" required>
+        <label for="comments">Additional Comments:</label>
+        <input type="text" id="comments" name="comments" placeholder="optional">
+        <input type="submit" value="Submit"><br><br>
+        <a>Add Another Entry: </a><input type="reset"></input>
+    </form>
+
     <div id="map"></div>
     <script>
         function initMap(){
@@ -28,13 +66,7 @@
 
             // map implementation
             var map = new google.maps.Map(document.getElementById('map'), options);
-
-            // marker
-            var marker = new google.maps.Marker({
-                position:{lat:49.2617,lng:-123.2495},
-                map:map
-            });
-
+/*
             // info pop-up
             var infoWindow = new google.maps.InfoWindow({
                 content:'<h1>UBC Macleod</h1><h2>↪ where the ECE kids hang</h2>'
@@ -42,11 +74,35 @@
 
             marker.addListener('click', function(){
                 infoWindow.open(map, marker);
-            });
+            });*/
+        
+
+            addMarker({lat:49.2617,lng:-123.2495});
+
+            function addMarker(coords){
+                var marker = new google.maps.Marker({
+                    position:coords,
+                    map:map
+                });
+            }
         }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly">
     </script>
+
+    <footer>
+        <div class="footer-content">
+            <h3>around us</h3>
+            <p>Record your favourite spots with your friends!</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>
